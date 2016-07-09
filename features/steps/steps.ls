@@ -7,7 +7,6 @@ require! {
   'livescript'
   'nitroglycerin' : N
   'port-reservation'
-  'record-http' : HttpRecorder
   'request'
   'wait' : {wait-until}
 }

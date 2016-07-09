@@ -23,7 +23,6 @@
     "o-tools": "0.4.16",
     "o-tools-livescript": "1.1.2",
     "port-reservation": "0.3.2",
-    "record-http": "0.6.0",
     "request": "2.72.0",
     "wait": "0.1.0"
   },
