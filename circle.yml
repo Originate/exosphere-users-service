@@ -3,6 +3,11 @@ machine:
     version: 5.5.0
 
 
+dependencies:
+  pre:
+    - bin/install-zeromq-circleci
+
+
 test:
 
   pre:
