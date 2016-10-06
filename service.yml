@@ -1,9 +1,10 @@
 name: Exosphere users service
 description: Manages user accounts in Exosphere applications
+author: trushton
 
 setup: npm install
 startup:
-  command: node_modules/.bin/exo-js
+  command: "node_modules/.bin/exo-js"
   online-text: online at port
 
 
