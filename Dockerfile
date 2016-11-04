@@ -1,4 +1,4 @@
-FROM originate/exosphere-base
+FROM node
 ARG SERVICE_NAME
 
 # These steps ensure that npm install is only run when package.json changes
