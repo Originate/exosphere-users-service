@@ -25,33 +25,29 @@ module.exports = ->
   @Given /^an instance of this service$/, (done) ->
     @process = new ExoService exocom-host: 'localhost', service-name: 'users', exocom-port: @exocom-port
       ..listen!
-      ..on 'online', -> done!
+      ..on 'online', ->  wait 10, done # Wait for ExoCom to register the service
 
 
   @Given /^the service contains the users:$/, (table, done) ->
-    wait 100, ~>
-      users = [{[key.to-lower-case!, value] for key, value of record} for record in table.hashes!]
-      @exocom
-        ..send service: 'users', name: 'users.create-many', payload: users
-        ..on-receive done
+    users = [{[key.to-lower-case!, value] for key, value of record} for record in table.hashes!]
+    @exocom
+      ..send service: 'users', name: 'users.create-many', payload: users
+      ..on-receive done
 
 
 
-  @When /^sending the message "([^"]*)"$/, (message, done) ->
-    wait 100, ~>
-      @exocom.send service: 'users', name: message
-      done!
+  @When /^sending the message "([^"]*)"$/, (message) ->
+    @exocom.send service: 'users', name: message
 
 
   @When /^sending the message "([^"]*)" with the payload:$/, (message, payload, done) ->
-    wait 100, ~>
-      @fill-in-user-ids payload, (filled-payload) ~>
-        if filled-payload[0] is '['   # payload is an array
-          eval livescript.compile "payload-json = #{filled-payload}", bare: true, header: no
-        else                          # payload is a hash
-          eval livescript.compile "payload-json = {\n#{filled-payload}\n}", bare: true, header: no
-        @exocom.send service: 'users', name: message, payload: payload-json
-        done!
+    @fill-in-user-ids payload, (filled-payload) ~>
+      if filled-payload[0] is '['   # payload is an array
+        eval livescript.compile "payload-json = #{filled-payload}", bare: true, header: no
+      else                          # payload is a hash
+        eval livescript.compile "payload-json = {\n#{filled-payload}\n}", bare: true, header: no
+      @exocom.send service: 'users', name: message, payload: payload-json
+      done!
 
 
 
