@@ -1,10 +1,10 @@
-name: users
+title: Exosphere users service
 description: Manages user accounts in Exosphere applications
 author: originate
 
 setup: npm install
 startup:
-  command: "node_modules/exoservice/bin/exo-js"
+  command: node_modules/exoservice/bin/exo-js
   online-text: online at port
 
 

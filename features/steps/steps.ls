@@ -23,7 +23,7 @@ module.exports = ->
 
 
   @Given /^an instance of this service$/, (done) ->
-    @process = new ExoService exocom-host: 'localhost', service-name: 'users', exocom-port: @exocom-port, exorelay-port: @service-port
+    @process = new ExoService exocom-host: 'localhost', service-name: 'users', exocom-port: @exocom-port
       ..listen!
       ..on 'online', -> done!
 
@@ -41,6 +41,7 @@ module.exports = ->
     wait 100, ~>
       @exocom.send service: 'users', name: message
       done!
+
 
   @When /^sending the message "([^"]*)" with the payload:$/, (message, payload, done) ->
     wait 100, ~>
