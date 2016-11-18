@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
-
+docker rm -f test-mongo || echo 'Docker ready for testing'
+docker run -dit --name=test-mongo mongo
 if [ "$#" == "0" ]; then
   node_modules/o-tools/bin/lint
   cucumber-js --tags ~@todo

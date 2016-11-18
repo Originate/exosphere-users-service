@@ -25,6 +25,7 @@ module.exports = ->
   @Given /^an instance of this service$/, (done) ->
     @process = new ExoService exocom-host: 'localhost', service-name: 'users', exocom-port: @exocom-port
       ..listen!
+      #TODO: Use MockExoCom.wait-for-service once it is implemented
       ..on 'online', ->  wait 10, done # Wait for ExoCom to register the service
 
 
