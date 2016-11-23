@@ -26,4 +26,4 @@ messages:
 
 docker:
   link:
-    - 'mongo:users-mongo'
+    - 'mongo'
